@@ -53,15 +53,8 @@ RUN python3 -m pip install -r requirements.txt
 
 WORKDIR /root
 RUN apt-get install -y wget
-# manually download cuda with `wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_570.86.10_linux.run`
 RUN --mount=type=bind,source=deps,target=/root/deps cd deps && bash cuda_12.8.0_570.86.10_linux.run --no-drm --toolkit --toolkitpath=/usr/local/cuda-12.8 --silent
 
 RUN apt-get install -y zstd
 RUN python3 -m pip install "https://download.stereolabs.com/zedsdk/4.2/whl/linux_x86_64/pyzed-4.2-cp38-cp38-linux_x86_64.whl"
 RUN python3 -m pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple numpy==1.24.4
-# manually download ZED_SDK_Ubuntu20_cuda12.1_v4.2.5.zstd.run to ./deps from https://www.stereolabs.com/en-hk/developers/release/4.2#82af3640d775 for Ubuntu 20
-# manually run the resulting image to install zed sdk
-# docker run -it -v ./deps:/mnt/deps <image_id> bash
-# set +e
-# adduser --disabled-password --gecos "" tmp && usermod -aG sudo tmp && passwd -d tmp
-# sudo -u tmp bash /mnt/deps/ZED_SDK_Ubuntu20_cuda12.1_v4.2.5.zstd.run # accept the agreements and recommended options; the installation would cost ~20 minutes.

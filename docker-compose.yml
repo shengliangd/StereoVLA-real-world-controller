@@ -1,6 +1,6 @@
 services:
   roscore:
-    image: franka_ros:latest
+    image: franka_ros_zed:latest
     build: .
     network_mode: host
     privileged: true
@@ -9,7 +9,7 @@ services:
     command: roscore
 
   franka_controller:
-    image: franka_ros:latest
+    image: franka_ros_zed:latest
     build: .
     network_mode: host
     privileged: true
@@ -20,7 +20,7 @@ services:
     command: /bin/bash -c '. /catkin_ws/devel/setup.bash && roslaunch --wait serl_franka_controllers impedance.launch robot_ip:=$ROBOT_IP load_gripper:=true'
 
   rviz:
-    image: franka_ros:latest
+    image: franka_ros_zed:latest
     build: .
     environment:
       - DISPLAY=${DISPLAY}
@@ -72,7 +72,7 @@ services:
   
   
   validate_server:
-    image: franka_ros:latest
+    image: franka_ros_zed:latest
     build: .
     volumes:
       - .:/catkin_ws/src/vla-franka

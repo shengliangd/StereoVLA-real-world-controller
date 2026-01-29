@@ -12,7 +12,19 @@ Ensure that the emergency stop button is available. If the robot arm behaves abn
 ## Installation
 
 1. Install docker (https://docs.docker.com/engine/install/);
-2. Run `docker build . -t franka_ros_zed:latest`. For earlier FER3 versions, add `-f Dockerfile_FER3`.
+2. Clone this repo and cd to it;
+3. Download cuda with `wget -P ./deps https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_570.86.10_linux.run`;
+4. Download ZED SDK runfile: `ZED_SDK_Ubuntu20_cuda12.1_v4.2.5.zstd.run` from https://www.stereolabs.com/en-hk/developers/release/4.2;
+5. Run `docker build . -t franka_ros_zed:latest`. **For earlier FER3 versions, add `-f Dockerfile_FER3`**;
+6. Due to zed sdk's installation method, we have to manually install it into the docker image:
+    ```bash
+    docker run -it --rm -v "$(pwd)/deps:/mnt/deps" franka_ros_zed:latest bash
+    # inside container:
+    set +e
+    adduser --disabled-password --gecos "" tmp && usermod -aG sudo tmp && passwd -d tmp
+    sudo -u tmp bash /mnt/deps/ZED_SDK_Ubuntu20_cuda12.1_v4.2.5.zstd.run
+    ```
+   - The ZED installer prompts require interactive confirmation.
 
 ## Configuration
 ### Franka
