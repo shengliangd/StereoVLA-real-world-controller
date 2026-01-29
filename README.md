@@ -37,7 +37,7 @@ Ensure that the emergency stop button is available. If the robot arm behaves abn
   <img src="res/camera-setup.png" alt="camera_setup_ours" width="70%" height="70%" style="display: block; margin: 0 auto;">
 
 ### Test Connection to the Model Server
-1. Start the model server following the instructions in [StereoVLA Model Repo](https://github.com/PKU-EPIC/GraspVLA).
+1. Start the model server following the instructions in [StereoVLA Model Repo](https://github.com/shengliangd/StereoVLA).
 
 2. Run the following command to validate the server is running. It will return ✓ if the server returns a valid result.
 
